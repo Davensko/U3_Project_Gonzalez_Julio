@@ -30,6 +30,8 @@ int stop_r, stop_l = 0;
 float compare = 0;
 
 
+
+
 /*
 void Forward(WbDeviceTag *wheels) {
   wb_motor_set_velocity(wheels[0], 0);
@@ -49,18 +51,19 @@ void TurnLeft(WbDeviceTag *wheels) {
   wb_motor_set_velocity(wheels[2], vel);
 }
 */
-//void automatic(){
-
-   
-
-//}
 
 
 
  
 int main(int argc, char **argv){
+
+  int key;
+  int x= 1; 
+  int y= 0; 
+
  
   wb_robot_init();
+  wb_keyboard_enable(TIME_STEP);
  
   WbDeviceTag wheel_1 = wb_robot_get_device("Wheel_1");
   WbDeviceTag wheel_2 = wb_robot_get_device("Wheel_2");
@@ -158,13 +161,56 @@ int main(int argc, char **argv){
     printf("Encoder: %f\n", encoder);
     printf("flag: %f\n", compare);
   
-  }   
+  }
+  
+  void manual(){
+  
+    
+   
+   if(key == WB_KEYBOARD_UP){
+
+       wb_motor_set_velocity(wheel_1, 0);
+       wb_motor_set_velocity(wheel_2, -2);
+       wb_motor_set_velocity(wheel_3, 2);
+  }
+  else{
+ 
+  wb_motor_set_velocity(wheel_1, 0);
+  wb_motor_set_velocity(wheel_2, 0);
+  wb_motor_set_velocity(wheel_3, 0);
+  }
+  
+  }
+  
+  
+  
+     
         
    
   while (wb_robot_step(TIME_STEP) != -1) {
-    
-   automatic(); 
-          
+  
+  key = wb_keyboard_get_key();
+  
+  
+   if(key == 'W'){
+    x = 1;
+    y = 0;
+    //printf("Manual mode \n");
+  } 
+  
+  else if (key == 'G'){
+    y = 1;
+    x = 0;
+   //printf("Automatic mode \n");
+  }
+  
+  if(y == 1){
+  manual();
+  }
+  if(x == 1){
+  automatic();
+  }
+   
   };
 
   wb_robot_cleanup();
