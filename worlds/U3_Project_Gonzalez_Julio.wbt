@@ -2,8 +2,9 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.48854152957909985 0.8573451991617033 0.16213076003921212 0.6990518396944284
-  position 1.9681444661030507 1.0164434315880722 2.6496158570897363
+  orientation -0.9998700198035966 -0.015299917440719171 0.005084881932047198 0.641953532204241
+  position -0.0028478463260290733 0.9374044592915678 1.0388421496093152
+  follow "robot"
 }
 TexturedBackground {
 }
@@ -833,5 +834,5 @@ Robot {
   boundingObject USE body
   physics Physics {
   }
-  controller "u3_exam_gonzalez_julio"
+  controller "U3_Project_Gonzalez_Julio"
 }
