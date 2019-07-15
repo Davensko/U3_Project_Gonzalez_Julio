@@ -173,6 +173,31 @@ int main(int argc, char **argv){
        wb_motor_set_velocity(wheel_2, -2);
        wb_motor_set_velocity(wheel_3, 2);
   }
+  else if(key ==WB_KEYBOARD_DOWN){
+       wb_motor_set_velocity(wheel_1, 0);
+       wb_motor_set_velocity(wheel_2, 2);
+       wb_motor_set_velocity(wheel_3, -2);
+  }
+  else if(key ==WB_KEYBOARD_RIGHT){
+       wb_motor_set_velocity(wheel_1, -4);
+       wb_motor_set_velocity(wheel_2, -3);
+       wb_motor_set_velocity(wheel_3, 3);
+  }
+  else if(key ==WB_KEYBOARD_LEFT){
+       wb_motor_set_velocity(wheel_1, 4);
+       wb_motor_set_velocity(wheel_2, 3);
+       wb_motor_set_velocity(wheel_3, -3);
+  }
+  else if(key == 'S'){
+       wb_motor_set_velocity(wheel_1, 2);
+       wb_motor_set_velocity(wheel_2, 2);
+       wb_motor_set_velocity(wheel_3, 2);
+  }
+  else if(key =='A'){
+       wb_motor_set_velocity(wheel_1, -2);
+       wb_motor_set_velocity(wheel_2, -2);
+       wb_motor_set_velocity(wheel_3, -2);
+  }
   else{
  
   wb_motor_set_velocity(wheel_1, 0);
