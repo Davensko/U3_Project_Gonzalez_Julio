@@ -24,7 +24,6 @@ double encoder;
 double max_vel = 0.2; 
 double resolution = 65535;
 
-
 int stop_r, stop_l = 0;
 int key;
 int x= 1;
@@ -124,85 +123,85 @@ int main(int argc, char **argv){
   wb_position_sensor_enable(enco_2, TIME_STEP);
   wb_position_sensor_enable(enco_3, TIME_STEP);
 
-void automatic(){
+  void automatic(){
 
-  autoForward(wheels);
+    autoForward(wheels);
 
-sn = wb_distance_sensor_get_value(sen_1);
-dis = (sn*max_vel)/resolution ;
+    sn = wb_distance_sensor_get_value(sen_1);
+    dis = (sn*max_vel)/resolution ;
 
-sn_2 = wb_distance_sensor_get_value(sen_2);
-dis_2 = (sn_2*max_vel)/resolution;
+    sn_2 = wb_distance_sensor_get_value(sen_2);
+    dis_2 = (sn_2*max_vel)/resolution;
 
-encoder = wb_position_sensor_get_value(enco_3);
+    encoder = wb_position_sensor_get_value(enco_3);
 
-if((dis <= 0.17 && dis>dis_2) && stop_r == 0){
+    if((dis <= 0.17 && dis>dis_2) && stop_r == 0){
 
-  compare = encoder + (angle);   // 2.35619 rad/s = 135 degrees
-  stop_r = 1;
-}
-  if(stop_r == 1){
-
-    if(encoder <= compare){
-      autoRight(wheels);
+      compare = encoder + (angle);   // 2.35619 rad/s = 135 degrees
+      stop_r = 1;
     }
-    else{
-      stopMotors(wheels);
-      stop_r = 0;
+    if(stop_r == 1){
+
+      if(encoder <= compare){
+        autoRight(wheels);
+      }
+      else{
+        stopMotors(wheels);
+        stop_r = 0;
+      }
     }
-}
 
-if((dis_2 <= 0.17 && dis<dis_2) && stop_l == 0){
+    if((dis_2 <= 0.17 && dis<dis_2) && stop_l == 0){
 
-  compare = encoder - (angle);
-  stop_l = 1;
-}
-  if(stop_l == 1){
+      compare = encoder - (angle);
+      stop_l = 1;
+    }
+    if(stop_l == 1){
 
-    if(encoder >= compare){
+      if(encoder >= compare){
         autoLeft(wheels);
+      }
+      else{
+        stopMotors(wheels);
+        stop_l = 0;
+      }
     }
-    else{
-      stopMotors(wheels);
-      stop_l = 0;
-    }
-  }
 
   printf("sensor: %f\n", dis);
   printf("sensor2: %f\n", dis_2);
   printf("Encoder: %f\n", encoder);
   printf("flag: %f\n", compare);
 
-}
+  }
 
-void manual(){
+  void manual(){
 
-  if(key == WB_KEYBOARD_UP){
-    manualForward(wheels);
+    if(key == WB_KEYBOARD_UP){
+      manualForward(wheels);
+    }
+    else if(key ==WB_KEYBOARD_DOWN){
+      manualBackward(wheels);
+    }
+    else if(key ==WB_KEYBOARD_RIGHT){
+      manualRight(wheels);
+    }
+    else if(key ==WB_KEYBOARD_LEFT){
+      manualLeft(wheels);
+    }
+    else if(key == 'S'){
+      turnRight(wheels);
+    }
+    else if(key =='A'){
+      turnLeft(wheels);
+    }
+    else{
+      stopMotors(wheels);
+    }
   }
-  else if(key ==WB_KEYBOARD_DOWN){
-    manualBackward(wheels);
-  }
-  else if(key ==WB_KEYBOARD_RIGHT){
-    manualRight(wheels);
-  }
-  else if(key ==WB_KEYBOARD_LEFT){
-    manualLeft(wheels);
-  }
-  else if(key == 'S'){
-    turnRight(wheels);
-  }
-  else if(key =='A'){
-    turnLeft(wheels);
-  }
-  else{
-    stopMotors(wheels);
-  }
-}
 
   while (wb_robot_step(TIME_STEP) != -1) {
 
-  key = wb_keyboard_get_key();
+    key = wb_keyboard_get_key();
 
     if(key == 'G'){
       x = 1;
