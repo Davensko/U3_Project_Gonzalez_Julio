@@ -2,8 +2,9 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.9998962827869051 -0.013837884337271188 0.00399207038991252 0.7219442459971689
-  position -0.025508636822337505 2.546350162274093 2.617109884361473
+  orientation -0.9962004833908406 -0.085231018520578 -0.01789609940183538 0.6392843000215674
+  position -0.26550469410602306 2.9866825878973677 3.5080064563249813
+  follow "robot"
 }
 TexturedBackground {
 }
@@ -834,4 +835,42 @@ Robot {
   physics Physics {
   }
   controller "U3_Project_Gonzalez_Julio"
+}
+DEF Obstacle1 Solid {
+  translation 0 0.1 -1
+  children [
+    DEF obs1 Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.5 0.2 0.05
+      }
+    }
+  ]
+  boundingObject USE obs1
+  physics Physics {
+  }
+}
+DEF Obstacle2 Solid {
+  translation 1.575447902838244 0.1 -0.9706554127857838
+  rotation 0 -1 0 1.8325957473591739
+  children [
+    DEF obs1 Shape {
+      appearance PBRAppearance {
+        baseColor 0.12549019607843137 0.2901960784313726 0.5294117647058824
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.5 0.2 0.05
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE obs1
+  physics Physics {
+  }
 }
